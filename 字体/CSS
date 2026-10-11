@@ -1,0 +1,21 @@
+/* 艺术大标题 */
+.hero-title,
+.section-title,
+.artistic-title {
+  font-family: "Averia Serif Libre", Georgia, serif;
+}
+
+/* 小标题 / 品牌 */
+.brand-name,
+h3,
+.editorial-heading {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+/* 正文 / 导航 / 按钮 */
+body,
+p,
+.main-nav,
+button {
+  font-family: "Inter", Arial, sans-serif;
+}
