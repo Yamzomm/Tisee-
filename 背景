@@ -1,243 +1,536 @@
-Please redesign ONLY the existing website Header / Navbar area.
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Tisee</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@400;700&family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      background: #efe7dc;
+      color: #332c27;
+    }
+
+    /* =========================================================
+       HEADER / NAVBAR
+       ========================================================= */
+
+    .site-header {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+
+      width: 100%;
+      min-height: 124px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 5vw;
+
+      color: rgba(240, 227, 200, 0.92);
+
+      /*
+        Rock image
+      */
+      background-image: url("/images/rock-texture.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center 38%;
+
+      /*
+        Lower contrast / softer than realistic photography
+      */
+      box-shadow:
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+        inset 0 -12px 28px rgba(0, 0, 0, 0.14);
+
+      z-index: 100;
+    }
+
+    /* =========================================================
+       WARM DARK OVERLAY
+       ========================================================= */
+
+    .site-header::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      z-index: -2;
+      pointer-events: none;
+
+      /*
+        Multiple overlays:
+        1. dark warm layer
+        2. uneven weathering
+        3. muted brown undertone
+      */
+      background:
+        radial-gradient(
+          circle at 18% 28%,
+          rgba(146, 107, 72, 0.12),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 77% 24%,
+          rgba(0, 0, 0, 0.18),
+          transparent 34%
+        ),
+
+        radial-gradient(
+          circle at 54% 90%,
+          rgba(137, 103, 72, 0.08),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          rgba(24, 22, 20, 0.46),
+          rgba(24, 22, 20, 0.50)
+        );
+
+      backdrop-filter: blur(1.2px);
+    }
+
+    /* =========================================================
+       GRAIN / PARTICLES
+       ========================================================= */
+
+    .site-header::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      z-index: -1;
+      pointer-events: none;
+
+      opacity: 0.20;
+
+      /*
+        Several particle sizes and spacing
+        to avoid obvious uniform digital noise
+      */
+      background-image:
+
+        radial-gradient(
+          circle,
+          rgba(240, 227, 200, 0.38) 0 0.45px,
+          transparent 0.8px
+        ),
+
+        radial-gradient(
+          circle,
+          rgba(5, 4, 3, 0.42) 0 0.65px,
+          transparent 1px
+        ),
+
+        radial-gradient(
+          circle,
+          rgba(214, 182, 140, 0.22) 0 0.8px,
+          transparent 1.15px
+        ),
 
-Do NOT change the rest of the page.
+        radial-gradient(
+          circle,
+          rgba(0, 0, 0, 0.18) 0 0.5px,
+          transparent 0.85px
+        );
 
-Use the existing Header/Navbar component and keep:
-- existing logo position
-- existing navigation structure
-- existing links
-- existing spacing/layout logic
-- existing responsive/mobile behavior
-- all page content below the header
+      background-size:
+        13px 17px,
+        19px 23px,
+        29px 31px,
+        41px 37px;
 
-Do not rebuild the header from scratch.
+      background-position:
+        2px 5px,
+        11px 9px,
+        7px 15px,
+        17px 3px;
 
-A rock texture image already exists at:
+      mix-blend-mode: soft-light;
+    }
 
-/public/images/rock-texture.jpg
+    /* =========================================================
+       HEADER INNER
+       ========================================================= */
 
-Use this image only as the visual background texture for the Header/Navbar.
+    .header-inner {
+      position: relative;
+      z-index: 2;
 
-VISUAL GOAL
+      width: 100%;
 
-The header should visually match the existing Tibetan rock-art icon system used on the website.
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-The existing icons have:
-- muted warm brown / ochre strokes
-- dusty hand-drawn texture
-- archaeological / ancient visual language
-- soft grain
-- low saturation
-- weathered rock-art feeling
+    /* =========================================================
+       BRAND
+       ========================================================= */
 
-The header should support these icons instead of competing with them.
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-Do NOT make the header look photorealistic.
+    .brand-mark {
+      width: 34px;
+      height: 34px;
 
-The final surface should feel like:
-- dark grey-brown weathered stone
-- matte and dusty
-- softly blurred
-- granular
-- slightly uneven
-- archaeological
-- aged
-- natural
+      border-radius: 50%;
 
-Avoid:
-- sharp realistic rock photography
-- marble
-- polished stone
-- concrete
-- dramatic cave lighting
-- fantasy game stone walls
-- artificial digital noise
-- high contrast cracks
-- glossy effects
+      border: 1px solid rgba(240, 227, 200, 0.28);
 
+      background:
+        radial-gradient(
+          circle at 35% 35%,
+          rgba(240, 227, 200, 0.14),
+          transparent 48%
+        ),
+        rgba(240, 227, 200, 0.05);
+    }
 
-BACKGROUND IMAGE
+    .brand-name {
+      font-family: "Cormorant Garamond", Georgia, serif;
 
-Use:
+      font-size: 24px;
+      font-weight: 600;
 
-background-image: url('/images/rock-texture.jpg');
-background-size: cover;
-background-repeat: no-repeat;
+      letter-spacing: 0.12em;
 
-Choose a background-position that keeps visually useful stone texture visible.
+      color: #eee2c9;
 
-Do not zoom/crop the image too aggressively.
+      text-decoration: none;
 
-Because the source image may be too photographic, soften it visually using overlays rather than changing the image itself.
+      text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.28);
+    }
 
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
 
-DARK WARM OVERLAY
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
 
-Add a warm dark overlay above the rock image:
+    .main-nav a {
+      position: relative;
 
-rgba(24, 22, 20, 0.45)
+      padding: 10px 0;
 
-The stone surface should remain visible underneath.
+      font-family: "Inter", Arial, sans-serif;
 
-The result should be low contrast and soft.
+      font-size: 13px;
+      font-weight: 500;
 
+      letter-spacing: 0.12em;
 
-SOFT WEATHERING / BLUR EFFECT
+      color: rgba(240, 227, 200, 0.84);
 
-Add subtle CSS layers to make the rock texture feel less photographic.
+      text-decoration: none;
 
-Use:
-- very subtle blur-like softness through translucent overlays
-- low-opacity gradients
-- muted contrast
-- slightly warm brown tint
+      transition:
+        color 180ms ease,
+        opacity 180ms ease;
+    }
 
-Do not blur navigation text or logo.
+    .main-nav a:hover {
+      color: #f6ead0;
+    }
 
-Only visually soften the background layers.
+    /* =========================================================
+       NAV HOVER UNDERLINE
+       ========================================================= */
 
+    .main-nav a::after {
+      content: "";
 
-GRAIN
+      position: absolute;
 
-Add a subtle embedded grain layer using ::before or ::after.
+      left: 0;
+      bottom: 5px;
 
-The grain should feel like small particles inside the stone surface.
+      width: 100%;
+      height: 1px;
 
-Use:
-- tiny warm light particles
-- tiny dark particles
-- irregular spacing
-- different particle sizes
-- very low opacity
+      background: rgba(240, 227, 200, 0.72);
 
-Avoid uniform film grain.
+      transform: scaleX(0);
+      transform-origin: left;
 
-It should not look animated.
+      transition: transform 220ms ease;
+    }
 
-It should feel like dusty stone particles.
+    .main-nav a:hover::after {
+      transform: scaleX(1);
+    }
 
+    /* =========================================================
+       CTA
+       ========================================================= */
 
-IRREGULAR WEATHERING
+    .main-nav .nav-cta {
+      padding: 10px 16px;
 
-Add subtle irregular radial gradients.
+      border: 1px solid rgba(240, 227, 200, 0.22);
 
-For example:
-- soft darker patch near one side
-- soft warmer patch near another side
-- slight unevenness across the header
+      border-radius: 999px;
 
-Keep opacity very low.
+      background: rgba(240, 227, 200, 0.05);
+    }
 
-The goal is natural weathering, not dramatic lighting.
+    .main-nav .nav-cta::after {
+      display: none;
+    }
 
+    .main-nav .nav-cta:hover {
+      background: rgba(240, 227, 200, 0.09);
+    }
 
-COLOR RELATIONSHIP WITH ROCK-ART ICONS
+    /* =========================================================
+       ARTISTIC PAGE HEADINGS
+       ========================================================= */
 
-The header needs to visually match the existing brown rock-art icons.
+    /*
+      Only large artistic headings use Averia Serif Libre
+    */
 
-Suggested palette:
+    h1,
+    h2,
+    .hero-title,
+    .section-title,
+    .artistic-title {
+      font-family: "Averia Serif Libre", Georgia, serif;
 
-Background:
-#26221f
-#302a25
-#3b332d
+      font-weight: 700;
 
-Warm stone undertone:
-#6e5845
-#7b624b
+      letter-spacing: 0.01em;
+    }
 
-Navigation text:
-#eee2c9
-rgba(240, 227, 200, 0.9)
+    /*
+      Example:
+      hero title
+    */
 
-Hover:
-#f6ead0
+    .hero-title {
+      font-size: clamp(42px, 6vw, 86px);
 
-The overall background should remain darker than the rock-art icons so the icons stay readable.
+      line-height: 0.95;
 
+      color: #332c27;
 
-NAVIGATION TEXT
+      margin: 0;
+    }
 
-Keep existing typography unless changing color is necessary.
+    /* =========================================================
+       REGULAR TEXT
+       ========================================================= */
 
-Use a warm sandstone/off-white color:
+    p,
+    .body-copy,
+    .section-copy,
+    .button-text {
+      font-family: "Inter", Arial, sans-serif;
+    }
 
-rgba(240, 227, 200, 0.9)
+    /* =========================================================
+       OPTIONAL SERIF SUBHEADINGS
+       ========================================================= */
 
-Text should remain highly readable.
+    /*
+      If you want some smaller headings to feel elegant
+      but not too artistic, use Cormorant Garamond.
+    */
 
+    .editorial-heading,
+    h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
 
-NAVIGATION HOVER
+      font-weight: 600;
+    }
 
-Add only a subtle hover effect.
+    /* =========================================================
+       EXAMPLE PAGE CONTENT
+       This part can be removed in the actual project.
+       ========================================================= */
 
-On hover:
-- slightly brighten text
-- reveal a thin underline
-- underline animates left to right
+    .page-demo {
+      min-height: 700px;
 
-The underline should look understated, like a small carved or painted rock-art line.
+      padding: 70px 6vw;
 
-Example thickness:
-1px
+      background: #efe7dc;
+    }
 
-Avoid large modern UI animations.
+    .page-demo .hero-title {
+      max-width: 800px;
+    }
 
+    .page-demo p {
+      max-width: 620px;
 
-HEADER DEPTH
+      margin-top: 24px;
 
-Add a subtle inset shadow near the bottom:
+      font-size: 16px;
 
-box-shadow:
-inset 0 -1px 0 rgba(255,255,255,0.04),
-inset 0 -8px 20px rgba(0,0,0,0.12);
+      line-height: 1.7;
 
-Do not use strong external drop shadows.
+      color: #665b50;
+    }
 
+    /* =========================================================
+       MOBILE
+       ========================================================= */
 
-IMPORTANT LAYERING
+    @media (max-width: 768px) {
 
-Structure the Header visually like:
+      .site-header {
+        min-height: 108px;
 
-rock image
-↓
-warm dark overlay
-↓
-subtle weathering gradients
-↓
-subtle grain layer
-↓
-logo + navigation content
+        padding: 0 20px;
 
-Make sure the pseudo-elements stay behind the navigation content.
+        background-position: center center;
+      }
 
-Use:
-position: relative;
-isolation: isolate;
+      .brand-name {
+        font-size: 20px;
+      }
 
-and appropriate z-index values.
+      .main-nav {
+        gap: 16px;
+      }
 
+      .main-nav a {
+        font-size: 11px;
+      }
 
-MOBILE
+      /*
+        If you already have a mobile hamburger menu,
+        keep your current logic instead of using this.
+      */
 
-Preserve the existing mobile navigation behavior.
+      .main-nav a:nth-child(3) {
+        display: none;
+      }
 
-On smaller screens:
-- keep the rock texture visible
-- use a less aggressive background crop
-- keep text/buttons readable
-- do not change the existing menu logic
+      .main-nav .nav-cta {
+        padding: 8px 11px;
+      }
+    }
 
-Consider changing only background-position on mobile if needed.
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
 
+    @media (prefers-reduced-motion: reduce) {
 
-TECHNICAL CONSTRAINTS
+      .main-nav a,
+      .main-nav a::after {
+        transition: none;
+      }
+    }
 
-- Prefer pure CSS
-- Do not install libraries
-- Do not modify unrelated files
-- Do not rebuild Header/Navbar
-- Reuse existing Header component and class names
-- Inspect the current Header/Navbar code first
-- Adapt the effect to the existing project structure
-- Keep changes minimal and isolated
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
+  <header class="site-header">
+
+    <div class="header-inner">
+
+      <!-- Brand -->
+      <div class="brand-wrap">
+
+        <div class="brand-mark"></div>
+
+        <a
+          href="/"
+          class="brand-name"
+        >
+          TISEE
+        </a>
+
+      </div>
+
+      <!-- Navigation -->
+      <nav class="main-nav">
+
+        <a href="/">
+          HOME
+        </a>
+
+        <a href="#stories">
+          STORIES
+        </a>
+
+        <a href="#map">
+          MAP
+        </a>
+
+        <a
+          href="#join"
+          class="nav-cta"
+        >
+          JOIN
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =======================================================
+       EXAMPLE PAGE CONTENT
+       Remove this section if integrating into existing website.
+       ======================================================= -->
+
+  <main class="page-demo">
+
+    <h1 class="hero-title">
+      Meet Tibet Through Its People
+    </h1>
+
+    <p>
+      Stories, routes and local experiences shaped around people,
+      place and everyday culture.
+    </p>
+
+  </main>
+
+</body>
+</html>
