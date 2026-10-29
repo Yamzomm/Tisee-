@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tisee — 岩画跑动 Loading</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <div class="eyebrow">T I S E E / EXPLORE</div>
+    <h1>Every place has a story.</h1>
+    <p>藏族岩画风格 · 风化岩石 · 矿物粉化质感</p>
+    <button type="button" id="show-loading">预览加载动画</button>
+    <p class="hint">打开页面会先自动播放 2.4 秒；也可以点击按钮重新查看。</p>
+  </main>
+
+  <!-- 复制这一段到平台顶层布局中，配合 style.css / loader.js 使用 -->
+  <div class="tisee-loader" id="tisee-loader" role="status" aria-live="polite" aria-label="页面加载中" aria-hidden="true">
+    <div class="tisee-loader__content">
+      <div class="tisee-loader__art" aria-hidden="true">
+        <img src="assets/running-rock.gif" alt="" width="480" height="320" />
+      </div>
+      <div class="tisee-loader__wordmark">T I S E E</div>
+      <div class="tisee-loader__subtitle">正在寻找新的故事…</div>
+      <div class="tisee-loader__progress"><span></span></div>
+    </div>
+  </div>
+  <script src="loader.js"></script>
+  <script>
+    // 演示：首次访问自动播放。接入正式平台时删掉这两行，改在请求开始/结束时调用。
+    window.TiseeLoader.show();
+    window.setTimeout(() => window.TiseeLoader.hide(), 2400);
+    document.getElementById('show-loading').addEventListener('click', () => {
+      window.TiseeLoader.show();
+      window.setTimeout(() => window.TiseeLoader.hide(), 2400);
+    });
+  </script>
+</body>
+</html>
